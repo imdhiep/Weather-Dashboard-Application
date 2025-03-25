@@ -9,7 +9,7 @@ library(memoise)
 # thiet lap api va "hanoi" la thanh pho mac dinh
 CONSTANTS <- list(
   DEFAULT_CITY = list(lat = 20.954050, lon = 105.758869, name = "Hanoi"),
-  API_KEY = '1d29e17b428b35c8301430b8b3c78c3d',
+  API_KEY = '2b27eb1d13b53c205716314e4e9f877c',
   BASE_URL = "http://api.openweathermap.org/data/2.5",
   CACHE_TIMEOUT = 300  
 )
@@ -132,6 +132,11 @@ shinyServer(function(input, output, session) {
   
   # hien thi du lieu
   output$city1 <- renderText({
+    req(weather_data())
+    weather_data()$city$name
+  })
+  
+  output$city2 <- renderText({
     req(weather_data())
     weather_data()$city$name
   })
