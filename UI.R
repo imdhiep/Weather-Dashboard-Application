@@ -121,12 +121,12 @@ shinyUI(dashboardPage(
   skin = "blue",
   # Header of dashboard
   dashboardHeader(
-    title = "Weather Dashboard",
+    title = "HiepDV Dashboard",
     titleWidth = 300,
     dropdownMenu(
       type = "notifications",
       notificationItem(
-        text = "Welcome to Weather Dashboard!",
+        text = "Welcome to Weather Forecast!",
         icon = icon("info"),
         status = "info"
       ),
