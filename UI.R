@@ -162,13 +162,13 @@ shinyUI(dashboardPage(
       ),
       # Menu chính
       menuItem(
-        "Weather Today", 
+        "Weather", 
         tabName = "weather", 
         icon = icon("cloud"),
         selected = TRUE
       ),
       menuItem(
-        "Weather Forecast", 
+        "Forecast", 
         tabName = "forecast", 
         icon = icon("chart-line")
       ),
