@@ -62,7 +62,7 @@ get_weather_data <- memoise(function(lat, lon) {
     
     data <- fromJSON(content(response, "text"), flatten = TRUE)
     
-    # xu ly du lieu du bao
+    # Tạo data frame với dữ liệu thời tiết
     forecast_data <- data.frame(
       time = as.POSIXct(data$list$dt_txt, format="%Y-%m-%d %H:%M:%S", tz="UTC"),
       temp = data$list$main.temp - 273.15,
@@ -75,9 +75,7 @@ get_weather_data <- memoise(function(lat, lon) {
       humidity = data$list$main.humidity,
       speed = data$list$wind.speed,
       deg = data$list$wind.deg,
-      gust = data$list$wind.gust,
-      weather_condition = sapply(data$list$weather, function(x) x$description[1]),
-      visibility = data$list$visibility
+      gust = data$list$wind.gust
     )
     
     return(list(
@@ -181,6 +179,36 @@ shinyServer(function(input, output, session) {
     format_output(weather_data()$forecast$pressure[1], "hPa")
   })
   
+  output$wind_direction <- renderText({
+    req(weather_data())
+    format_output(weather_data()$forecast$deg[1], "°")
+  })
+  
+  output$wind_gust <- renderText({
+    req(weather_data())
+    format_output(weather_data()$forecast$gust[1], "km/h")
+  })
+  
+  output$temp_min <- renderText({
+    req(weather_data())
+    format_output(weather_data()$forecast$temp_min[1], "°C")
+  })
+  
+  output$temp_max <- renderText({
+    req(weather_data())
+    format_output(weather_data()$forecast$temp_max[1], "°C")
+  })
+  
+  output$sea_level <- renderText({
+    req(weather_data())
+    format_output(weather_data()$forecast$sea_level[1], "hPa")
+  })
+  
+  output$grnd_level <- renderText({
+    req(weather_data())
+    format_output(weather_data()$forecast$grnd_level[1], "hPa")
+  })
+  
   # hien thi ban do
   output$map <- renderLeaflet({
     req(weather_data())
@@ -244,8 +272,12 @@ shinyServer(function(input, output, session) {
       "temp_min" = "Minimum Temperature (°C)",
       "temp_max" = "Maximum Temperature (°C)",
       "pressure" = "Pressure (hPa)",
+      "sea_level" = "Sea Level (hPa)",
+      "grnd_level" = "Ground Level (hPa)",
       "humidity" = "Humidity (%)",
-      "speed" = "Wind Speed (km/h)"
+      "speed" = "Wind Speed (km/h)",
+      "deg" = "Wind Direction (°)",
+      "gust" = "Wind Gust (km/h)"
     )
     
     y_label <- feature_names[input$feature]

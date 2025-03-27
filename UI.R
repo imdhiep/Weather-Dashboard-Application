@@ -298,29 +298,14 @@ shinyUI(dashboardPage(
                   width = 4,
                   title = div(
                     style = "display: flex; align-items: center;",
-                    icon("cloud", lib = "font-awesome"),
-                    "Condition"
+                    icon("tachometer-alt", lib = "font-awesome"),
+                    "Air Pressure"
                   ),
-                  status = "success",
+                  status = "info",
                   solidHeader = TRUE,
                   div(
                     class = "text-center",
-                    span(textOutput("weather_condition"), 
-                         style = "font-size: 24px; font-weight: bold;")
-                  )
-                ),
-                box(
-                  width = 4,
-                  title = div(
-                    style = "display: flex; align-items: center;",
-                    icon("eye", lib = "font-awesome"),
-                    "Visibility"
-                  ),
-                  status = "warning",
-                  solidHeader = TRUE,
-                  div(
-                    class = "text-center",
-                    span(textOutput("visibility"), 
+                    span(textOutput("pressure"), 
                          style = "font-size: 24px; font-weight: bold;")
                   )
                 ),
@@ -343,14 +328,29 @@ shinyUI(dashboardPage(
                   width = 4,
                   title = div(
                     style = "display: flex; align-items: center;",
-                    icon("tachometer-alt", lib = "font-awesome"),
-                    "Air Pressure"
+                    icon("compass", lib = "font-awesome"),
+                    "Wind Direction"
                   ),
-                  status = "info",
+                  status = "warning",
                   solidHeader = TRUE,
                   div(
                     class = "text-center",
-                    span(textOutput("pressure"), 
+                    span(textOutput("wind_direction"), 
+                         style = "font-size: 24px; font-weight: bold;")
+                  )
+                ),
+                box(
+                  width = 4,
+                  title = div(
+                    style = "display: flex; align-items: center;",
+                    icon("wind", lib = "font-awesome"),
+                    "Wind Gust"
+                  ),
+                  status = "success",
+                  solidHeader = TRUE,
+                  div(
+                    class = "text-center",
+                    span(textOutput("wind_gust"), 
                          style = "font-size: 24px; font-weight: bold;")
                   )
                 )
@@ -402,13 +402,17 @@ shinyUI(dashboardPage(
                   label = "Select Feature to Display:",
                   inputId = "feature",
                   choices = c(
-                    "Temperature" = "temp",
-                    "Feels Like" = "feels_like",
-                    "Minimum Temperature" = "temp_min",
-                    "Maximum Temperature" = "temp_max",
-                    "Pressure" = "pressure",
-                    "Humidity" = "humidity",
-                    "Wind Speed" = "speed"
+                    "Temperature (°C)" = "temp",
+                    "Feels Like (°C)" = "feels_like",
+                    "Minimum Temperature (°C)" = "temp_min",
+                    "Maximum Temperature (°C)" = "temp_max",
+                    "Pressure (hPa)" = "pressure",
+                    "Sea Level (hPa)" = "sea_level",
+                    "Ground Level (hPa)" = "grnd_level",
+                    "Humidity (%)" = "humidity",
+                    "Wind Speed (km/h)" = "speed",
+                    "Wind Direction (°)" = "deg",
+                    "Wind Gust (km/h)" = "gust"
                   ),
                   selected = "temp",
                   options = list(
