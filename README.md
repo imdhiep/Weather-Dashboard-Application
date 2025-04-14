@@ -30,7 +30,7 @@ This repository contains an R Shiny application that provides an interactive wea
 
 To run this application, you need:
 
-- R (version 4.0.0 or higher)
+- R (version 4.4.2 or higher)
 - RStudio (recommended)
 - Required R packages:
   - shiny
