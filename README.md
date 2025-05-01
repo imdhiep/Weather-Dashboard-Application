@@ -1,7 +1,6 @@
 # Weather Dashboard Application
 
 This repository contains an R Shiny application that provides an interactive weather dashboard interface. The application allows users to view and analyze weather data for different cities, with a default focus on Hanoi, Vietnam.
-![Uploading {C32A34E4-5637-4B4C-82C6-33EEA4A91D3C}.png…]()
 
 ## Features
 
